@@ -1,4 +1,4 @@
-package com.kodilla.library.Exeptions;
+package com.kodilla.library.exeptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
