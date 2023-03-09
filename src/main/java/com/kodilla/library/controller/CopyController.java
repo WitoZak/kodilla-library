@@ -42,9 +42,9 @@ public class CopyController {
 
     @GetMapping("/{copyId}")
     public ResponseEntity<?> getCopyById(@PathVariable Long copyId) {
-        if (!copyService.getAllCopies()
+        if (copyService.getAllCopies()
                 .stream()
-                .anyMatch(copy -> copy.getCopiesId().equals(copyId))) {
+                .noneMatch(copy -> copy.getCopiesId().equals(copyId))) {
             return ResponseEntity.badRequest().body("Copy id" + copyId + " doesn't exists.");
         }
         return new ResponseEntity<>(copyMapper.mapToCopyDto(copyService.getCopiesById(copyId)), HttpStatus.FOUND);

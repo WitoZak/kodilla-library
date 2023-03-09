@@ -1,9 +1,9 @@
 package com.kodilla.library.service;
 
 import com.kodilla.library.domain.Borrow;
-import com.kodilla.library.domain.BorrowDto;
 import com.kodilla.library.repository.BorrowRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,18 +13,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BorrowService {
 
+    @Autowired
     private final BorrowRepository borrowRepository;
 
-    public List<Borrow> getBorrowById() {
-        return (List<Borrow>) borrowRepository.findAll();
+    public List<Borrow> getBorrows() {
+        return borrowRepository.findAll();
     }
 
     public Borrow saveBorrow(final Borrow borrow) {
         return borrowRepository.save(borrow);
     }
 
-    public void deleteBorrow(final BorrowDto borrowDto) {
-        borrowRepository.deleteById(borrowDto.getBorrowId());
+    public void deleteBorrowById(Long borrowId) {
+        borrowRepository.deleteById(borrowId);
     }
 
     public Borrow getBorrowById(Long borrowId) {
