@@ -1,9 +1,9 @@
 package com.kodilla.library.controller;
 
-import com.kodilla.library.Exeptions.BookAlreadyExistsException;
-import com.kodilla.library.Exeptions.BookNotFoundException;
-import com.kodilla.library.Exeptions.BookTitleAlreadyExistsException;
-import com.kodilla.library.Exeptions.BookTitleNotFoundException;
+import com.kodilla.library.exeptions.BookAlreadyExistsException;
+import com.kodilla.library.exeptions.BookNotFoundException;
+import com.kodilla.library.exeptions.BookTitleAlreadyExistsException;
+import com.kodilla.library.exeptions.BookTitleNotFoundException;
 import com.kodilla.library.domain.Book;
 import com.kodilla.library.domain.BookDto;
 import com.kodilla.library.mapper.BookMapper;
@@ -33,7 +33,7 @@ public class BookController {
 
     @GetMapping("/{id}")
     public ResponseEntity<BookDto> getBookById(@PathVariable Long id) throws BookNotFoundException {
-        Book book = bookService.getBookId(id);
+        Book book = bookService.getBookById(id);
         BookDto bookDto = bookMapper.mapToBookDto(book);
         return ResponseEntity.ok(bookDto);
     }
@@ -63,7 +63,7 @@ public class BookController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book bookToUpdate)  throws BookTitleNotFoundException, BookNotFoundException {
-        Book existingBook = bookService.getBookId(id);
+        Book existingBook = bookService.getBookById(id);
         if (existingBook != null) {
             existingBook.setTitle(bookToUpdate.getTitle());
             existingBook.setAuthor(bookToUpdate.getAuthor());

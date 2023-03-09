@@ -1,10 +1,11 @@
 package com.kodilla.library.service;
 
-import com.kodilla.library.Exeptions.BookAlreadyExistsException;
-import com.kodilla.library.Exeptions.BookNotFoundException;
+import com.kodilla.library.exeptions.BookAlreadyExistsException;
+import com.kodilla.library.exeptions.BookNotFoundException;
 import com.kodilla.library.domain.Book;
 import com.kodilla.library.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,21 +14,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BookService {
 
-    private final BookRepository bookRepository;
+    @Autowired
+    public final BookRepository bookRepository;
 
     public List<Book> getAllBooks() {
-        return (List<Book>) bookRepository.findAll();
+        return bookRepository.findAll();
     }
 
     public Book save(Book book) throws BookAlreadyExistsException {
-        return bookRepository.save(book);
+        return (Book) bookRepository.save(book);
 
     }
 
-    public Book getBookId(final Long id) {
-        return bookRepository.findById(id)
-                .filter(t -> !t.isDeleted())
-                .orElseThrow(BookNotFoundException::new);
+    public Book getBookById(final Long id) {
+        return bookRepository.findById(id).get();
+
     }
 
     public void deleteBookById(Long id) throws BookNotFoundException {

@@ -5,10 +5,9 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BookDto {
+public class CopyDto {
 
+    private Long copiesId;
+    private String status;
     private Long bookId;
-    private String title;
-    private String author;
-    private String published;
 }

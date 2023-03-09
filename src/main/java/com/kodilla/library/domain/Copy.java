@@ -7,34 +7,33 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "BOOKS")
-public class Book {
+@Table(name = "COPIES")
+public class Copy {
 
     @Id
     @GeneratedValue
-    private Long bookId;
+    private Long copiesId;
 
     @NotNull
-    private String title;
+    private String status;
 
-    @NotNull
-    private String author;
-
-    @NotNull
-    private String published;
+    @ManyToOne
+    @JoinColumn(name = "BOOK_ID")
+    private Book book;
 
     @OneToMany(
-            targetEntity = Copy.class,
-            mappedBy = "book",
+            targetEntity = Borrow.class,
+            mappedBy = "copy",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Copy> copyList = new ArrayList<>();
+
+    private List<Borrow> borrows = new ArrayList<>();
+
 
 }
