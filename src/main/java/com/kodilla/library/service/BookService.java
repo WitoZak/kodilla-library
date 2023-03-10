@@ -22,7 +22,7 @@ public class BookService {
     }
 
     public Book save(Book book) throws BookAlreadyExistsException {
-        return (Book) bookRepository.save(book);
+        return bookRepository.save(book);
 
     }
 

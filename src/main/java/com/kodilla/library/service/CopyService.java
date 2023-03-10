@@ -19,12 +19,6 @@ public class CopyService {
         return copyRepository.findAll();
     }
 
-    public Copy updateCopyStatus(Long copyId, String newStatus) {
-        Copy copyById = getCopiesById(copyId);
-        copyById.setStatus(newStatus);
-        saveCopy(copyById);
-        return copyById;
-    }
     public Copy saveCopy(Copy copy) {
         copy.setBook(bookService.getBookById(copy.getBook().getBookId()));
         return copyRepository.save(copy);

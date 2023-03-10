@@ -2,11 +2,12 @@ package com.kodilla.library.service;
 
 import com.kodilla.library.domain.Borrow;
 import com.kodilla.library.repository.BorrowRepository;
+import com.kodilla.library.repository.CopyRepository;
+import com.kodilla.library.repository.ReaderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -30,15 +31,6 @@ public class BorrowService {
 
     public Borrow getBorrowById(Long borrowId) {
         return borrowRepository.findById(borrowId).get();
-    }
-
-    public Borrow updateBorrowDateDetails(Long borrowId, LocalDate borrowDate, LocalDate returnDate) {
-
-        Borrow borrowById = getBorrowById(borrowId);
-        borrowById.setBorrowDate(borrowDate);
-        borrowById.setReturnDate(returnDate);
-        saveBorrow(borrowById);
-        return borrowById;
     }
 
 }

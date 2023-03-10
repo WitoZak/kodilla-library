@@ -80,7 +80,7 @@ public class BorrowController {
     }
 
     @PutMapping()
-    public ResponseEntity<?> updateBorrow(@RequestBody BorrowDto borrowDto) {
+    public ResponseEntity<?> updateBorrow(@RequestBody Long borrowId, BorrowDto borrowDto) {
         boolean exist = borrowService.getBorrows()
                 .stream()
                 .anyMatch(borrow -> borrow.getBorrowId().equals(borrowDto.getBorrowId()));
