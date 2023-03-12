@@ -1,5 +1,6 @@
 package com.kodilla.library.service;
 
+import com.kodilla.library.domain.BookDto;
 import com.kodilla.library.exeptions.BookAlreadyExistsException;
 import com.kodilla.library.exeptions.BookNotFoundException;
 import com.kodilla.library.domain.Book;
@@ -30,6 +31,15 @@ public class BookService {
         return bookRepository.findById(id).get();
 
     }
+
+    public Book updateBook(Long id, BookDto bookDto) throws BookNotFoundException {
+        Book existingBook = getBookById(id);
+        existingBook.setTitle(bookDto.getTitle());
+        existingBook.setAuthor(bookDto.getAuthor());
+        existingBook.setPublished(bookDto.getPublished());
+        return save(existingBook);
+    }
+
 
     public void deleteBookById(Long id) throws BookNotFoundException {
         Book book = bookRepository.findById(id)
