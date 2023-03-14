@@ -35,6 +35,7 @@ public class BorrowController {
             return ResponseEntity.ok().body(borrowDtoList);
         } else {
             return ResponseEntity.badRequest().body("List not found");
+            //zwracać obiekt nie string
         }
     }
 
