@@ -13,7 +13,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     Optional<Book> findById(Long bookId);
 
-    Book save(Book book);
 
     List<Book> findAll();
 

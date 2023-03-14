@@ -19,6 +19,10 @@ public class BookMapper {
     }
 
     public BookDto mapToBookDto(final Book book) {
+        //return BookDto.builder()
+                //.author()
+                //.build();
+
         return new BookDto(
                 book.getBookId(),
                 book.getTitle(),

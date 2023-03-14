@@ -1,14 +1,13 @@
 package com.kodilla.library.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 
 @Data
 @RequiredArgsConstructor
 @NoArgsConstructor
 @AllArgsConstructor
+//@Builder
+//@Value
 public class BookDto {
 
     private Long bookId;
