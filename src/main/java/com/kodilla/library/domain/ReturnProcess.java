@@ -15,11 +15,10 @@ public class ReturnProcess {
     @GeneratedValue
     private Long returnId;
 
-    @JoinColumn
-    private Long readerId;
+    @ManyToOne
+    @JoinColumn(name = "READER_ID")
+    private Reader reader;
 
     @JoinColumn
     private Long copyId;
-
-
 }
