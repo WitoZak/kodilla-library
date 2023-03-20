@@ -45,6 +45,4 @@ public class Reader {
             fetch = FetchType.EAGER
     )
     private List<BorrowProcess> borrowProcesses = new ArrayList<>();
-
-
 }

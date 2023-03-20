@@ -2,13 +2,12 @@ package com.kodilla.library.service;
 
 import com.kodilla.library.domain.Borrow;
 import com.kodilla.library.repository.BorrowRepository;
-import com.kodilla.library.repository.CopyRepository;
-import com.kodilla.library.repository.ReaderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -29,8 +28,8 @@ public class BorrowService {
         borrowRepository.deleteById(borrowId);
     }
 
-    public Borrow getBorrowById(Long borrowId) {
-        return borrowRepository.findById(borrowId).get();
+    public Optional<Borrow> getBorrowById(Long borrowId) {
+        return borrowRepository.findById(borrowId);
     }
 
 }

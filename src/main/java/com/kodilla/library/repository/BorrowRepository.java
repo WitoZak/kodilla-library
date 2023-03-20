@@ -11,8 +11,6 @@ import java.util.Optional;
 public interface BorrowRepository extends CrudRepository<Borrow, Long> {
     List<Borrow> findAll();
 
-    Borrow save(Borrow borrow);
-
     Optional<Borrow> findById(Long borrowId);
 
     void deleteById(Long borrowId);

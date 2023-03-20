@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -15,18 +14,18 @@ public class ReaderService {
     public final ReaderRepository readerRepository;
 
     public List<Reader> getAllReaders() {
-        return (List<Reader>) readerRepository.findAll();
+        return  readerRepository.findAll();
     }
 
     public Reader save(Reader reader) {
         return readerRepository.save(reader);
     }
 
-    public Reader getReaderById(final Long id) {
-        return readerRepository.findById(id).get();
+    public Reader getReaderById(final Long readerId) {
+        return readerRepository.findById(readerId).orElseThrow();
     }
 
-    public void deleteById(Long id) {
-        readerRepository.deleteById(id);
+    public void deleteById(Long readerId) {
+        readerRepository.deleteById(readerId);
     }
 }

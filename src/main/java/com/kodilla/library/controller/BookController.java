@@ -31,9 +31,9 @@ public class BookController {
         return ResponseEntity.ok(bookDtos);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<BookDto> getBookById(@PathVariable Long id) throws BookNotFoundException {
-        Book book = bookService.getBookById(id);
+    @GetMapping("/{bookId}")
+    public ResponseEntity<BookDto> getBookById(@PathVariable Long bookId) throws BookNotFoundException {
+        Book book = bookService.getBookById(bookId);
         BookDto bookDto = bookMapper.mapToBookDto(book);
         return ResponseEntity.ok(bookDto);
     }
@@ -54,16 +54,16 @@ public class BookController {
         return new ResponseEntity<>(savedBookDto, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteBookById(@PathVariable Long id) throws BookNotFoundException {
-        bookService.deleteBookById(id);
+    @DeleteMapping("/{bookId}")
+    public ResponseEntity<Void> deleteBookById(@PathVariable Long bookId) throws BookNotFoundException {
+        bookService.deleteBookById(bookId);
         return ResponseEntity.noContent().build();
     }
 
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Book> updateBook(@PathVariable Long id, @RequestBody Book bookToUpdate)  throws BookTitleNotFoundException, BookNotFoundException {
-        Book existingBook = bookService.getBookById(id);
+    @PutMapping("/{bookId}")
+    public ResponseEntity<Book> updateBook(@PathVariable Long bookId, @RequestBody Book bookToUpdate)  throws BookTitleNotFoundException, BookNotFoundException {
+        Book existingBook = bookService.getBookById(bookId);
         if (existingBook != null) {
             existingBook.setTitle(bookToUpdate.getTitle());
             existingBook.setAuthor(bookToUpdate.getAuthor());
